@@ -1,0 +1,194 @@
+🩺 Health check
+###
+GET http://127.0.0.1:8000/
+Accept: application/json
+
+--- CATEGORIES ---
+
+➕ Crear una nueva categoría
+###
+POST http://127.0.0.1:8000/categories
+Content-Type: application/json
+
+{
+"name": "Electrónica y Gadgets",
+"description": "Dispositivos de alta tecnología y accesorios."
+}
+
+###
+
+🏷️ Listar todas las categorías
+###
+GET http://127.0.0.1:8000/categories
+Accept: application/json
+
+🔍 Obtener Categoría por ID
+###
+GET http://127.0.0.1:8000/categories/1
+Accept: application/json
+
+✏️ Actualizar Categoría
+###
+PUT http://127.0.0.1:8000/categories/1
+Content-Type: application/json
+
+{
+"name": "Electrónica para el Hogar"
+}
+
+###
+
+
+
+🗑️ Eliminar Categoría
+###
+
+DELETE http://127.0.0.1:8000/categories/1
+Accept: application/json
+
+--- PRODUCTS ---
+
+➕ Crear un nuevo producto
+###
+
+POST http://127.0.0.1:8000/products
+Content-Type: application/json
+
+{
+    "name": "Auriculares Inalámbricos X9",
+    "description": "Sonido HD y cancelación de ruido activa.",
+    "price": 79.99,
+    "rating": 2,
+    "category_id": 1
+}
+
+###
+
+🛍️ Listar todos los productos
+###
+
+GET http://127.0.0.1:8000/products?categories=Libros&price_min=50&price_max=200
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzYyODIzMjg5fQ.2VqlwxiVy5yHn4gbMyLdWyWmpE3kECNEevU_R5tO7S8
+Accept: application/json
+
+🔍 Obtener un producto por ID
+###
+
+GET http://127.0.0.1:8000/products/1
+Accept: application/json
+
+
+
+✏️ Actualizar Producto
+###
+
+PUT http://127.0.0.1:8000/products/1
+Content-Type: application/json
+
+{
+"name": "Auriculares Inalámbricos X9 PRO",
+"price": 99.99
+}
+
+###
+
+🗑️ Eliminar Producto
+###
+
+DELETE http://127.0.0.1:8000/products/1
+Accept: application/json
+
+--- USERS ---
+
+👤 Crear Usuario (Registro)
+###
+POST http://127.0.0.1:8000/auth/register
+Content-Type: application/json
+
+{
+"name": "matias",
+"username": "mati11",
+"email": "mati@gmail.com",
+"password": "mi_clave_secreta"
+}
+
+###
+
+Iniciar Session (Login)
+###
+POST http://127.0.0.1:8000/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "pablo22",
+    "password": "mi_clave_secreta"
+}
+
+
+
+# username=pablo22
+# &password=mi_clave_secreta
+
+
+###
+
+🔍 Obtener informacion del usuario autenticado
+###
+GET http://127.0.0.1:8000/auth/me
+Accept: application/json
+
+✏️ Actualizar Usuario
+###
+PUT http://127.0.0.1:8000/users/1
+Content-Type: application/json
+
+{
+"username": "Franco_Pro",
+"is_active": true
+}
+
+###
+
+
+--- CART ---
+
+🛒 Obtener Carrito del Usuario 1 (Lo crea si no existe)
+###
+GET http://127.0.0.1:8000/users/1/cart
+Accept: application/json
+
+
+
+➕ Agregar ítem al carrito
+###
+POST http://127.0.0.1:8000/users/1/cart
+Content-Type: application/json
+
+{
+"product_id": 1,
+"quantity": 2
+}
+
+###
+
+✏️ Actualizar cantidad de ítem (Establecer a 5)
+###
+PUT http://127.0.0.1:8000/users/1/cart
+Content-Type: application/json
+
+{
+"product_id": 1,
+"quantity": 5
+}
+
+###
+
+🗑️ Eliminar un ítem del carrito
+###
+DELETE http://127.0.0.1:8000/users/1/cart/items/1
+Accept: application/json
+
+💥 Vaciar Carrito Completo
+###
+DELETE http://127.0.0.1:8000/users/1/cart
+Accept: application/json

@@ -1,0 +1,19 @@
+# docker-compose.yml
+version: "3.7"
+services:
+  mariadb:
+    image: mariadb:10.6
+    container_name: mariadb-10.6
+    restart: always
+    environment:
+      MARIADB_DATABASE: edu-cart
+      MARIADB_USER: usuario
+      MARIADB_PASSWORD: 123456
+      MARIADB_ROOT_PASSWORD: 123456
+    ports:
+      - "3309:3306"
+    volumes:
+      - mariadb-db:/var/lib/mysql
+
+volumes:
+  mariadb-db:
