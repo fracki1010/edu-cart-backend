@@ -49,8 +49,5 @@ uvicorn app.main:app --reload --port 8000
 ## Pruebas
 
 Usa el archivo `test.http` con el VSCode REST Client para probar los endpoints.
-# marcket-easy-app
-# marcket-easy-app-backend
-# marcket-easy-app-backend
-# marcket-easy-app-backend
+
 # edu-cart-backend
